@@ -1,0 +1,37 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html{width: 100%;height: 100%;margin:0;font-family:"?????????";}
+		#allmap{height:500px;width:100%;}
+		#r-result{width:100%; font-size:14px;}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TvOgiGxjcS4VqZFn6G8meMgE"></script>
+</head>
+<body>
+	<div id="allmap"></div>
+	<div id="r-result">
+		<input type="hidden" id="longitude" />	<!--隐藏输入框，不知道怎么在QT中操作api里面的变量，所以暂时把这个当作变量-->
+		<input type="hidden" id="latitude" />
+	</div>
+</body>
+
+<script type="text/javascript">
+ 
+	//取地图，allmap世界地图
+	var map = new BMap.Map("allmap");
+	//设定地图中心点
+	map.centerAndZoom(new BMap.Point(116.331398,39.897445),12);
+	//允许滚轮事件
+	map.enableScrollWheelZoom(true);
+	
+	//定位函数
+	function theLocation(){
+			map.clearOverlays(); 
+			var new_point = new BMap.Point(document.getElementById("longitude").value,document.getElementById("latitude").value);
+			var marker = new BMap.Marker(new_point);
+			map.addOverlay(marker);
+			map.panTo(new_point);      
+	}
+</script>
